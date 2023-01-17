@@ -41,9 +41,10 @@ class DisplayTable extends React.Component {
                             <th>Expected Deliver date</th>
                             <th>Actual Deliver date</th>
                             <th>Order Id</th>
-                            <th>Cost in cents</th>
                             <th>Order Status</th>
                             <th>Id</th>
+                            <th>Receiver Zip Code</th>
+                            <th>Sender Zip Code</th>
                         </tr>
                     </thead>
                     <tbody>
