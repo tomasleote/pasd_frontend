@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import './searchbar.css';
-import { json } from 'react-router-dom';
-import axios from 'axios';
 
 function SearchBar() {
-  const [searchValue, setSearchValue] = useState([]);
-  const [apiResponse, setApiResponse] = useState([]);
+    const [trackingNumber, setTrackingNumber] = useState('');
+    const [deliveryStatus, setDeliveryStatus] = useState('');
 
-  async function handleSearch() {
-    console.log(searchValue)
-    const response = await axios.get(`http://localhost:8080/getstatus/${searchValue}`);   //Add api link here
-    console.log('data:' + response.data);
-    setApiResponse(response.data);
-  }
+    useEffect(() => {
+        if (trackingNumber) {
+            // Send request to your API with the tracking number
+            // Example using the fetch API
+            fetch(`http://localhost:8080/getstatus/${trackingNumber}`)
+                .then(response =>  {
+                    response.text().then(data =>
+                        setDeliveryStatus(data)
+                    )
+                }
+                )
+                .catch(error => {
+                    // Handle error
+                });
+        }
+    }, [trackingNumber]);
 
-  return (
-    <div className="search-bar">
-      <input 
-          type="text" 
-          value={searchValue}
-          placeholder="Order..." 
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-      <button onClick={handleSearch}>Search</button>  
-      <div className="search-results">
-        {apiResponse.map((item) => { 
-          return (
-            <div className="search-result">
-              <div className="search-result">Status: {item.status} </div>
-              <div className="search-result-body">{item.body}</div>     
+    return (
+        <div className="search-container">
+            <div>
+                <input
+                    className="search-bar"
+                    type="text"
+                    value={trackingNumber}
+                    onChange={e => setTrackingNumber(e.target.value)}
+                />
+                {deliveryStatus && <div className="status-text">Delivery Status: {deliveryStatus}</div>}
             </div>
-          )
-        })}
-      </div>
-    </div>
+        </div>
     );
 }
 

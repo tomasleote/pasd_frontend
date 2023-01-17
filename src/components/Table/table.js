@@ -5,7 +5,7 @@ function DisplayTable() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('https://localhost:8080/deliveries')
+        fetch('http://localhost:8080/deliveries')
             .then(response => response.json())
             .then(data => setData(data))
             .catch(error => console.log(error));
@@ -42,6 +42,7 @@ return (
                     <td>{item.expected_deliver_datetime}</td>
                     <td>{item.actual_deliver_datetime}</td>
                     <td>{item.order_id}</td>
+                    <td>{item.id}</td>
                     <td>{item.sender_zipcode}</td>
                     <td>{item.receiver_zipcode}</td>
                     <td>{item.vehicle}</td>

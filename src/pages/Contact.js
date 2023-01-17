@@ -30,7 +30,7 @@ function Contact() {
                 marginBottom: 0,
                 display: "inline",
                 marginLeft: 25,
-                textAlign: "left",
+                textAlign: "center",
                 height: "100vh"
             }}>
 

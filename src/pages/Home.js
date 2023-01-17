@@ -27,6 +27,7 @@ function Home() {
             style={{
                 color: "black", 
                 lineHeight: "inherit",
+                textAlign : "center",
                 marginTop: 15,
                 marginBottom: 0,
                 display: "inline",
