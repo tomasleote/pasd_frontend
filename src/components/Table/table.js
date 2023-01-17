@@ -45,6 +45,7 @@ class DisplayTable extends React.Component {
                             <th>Id</th>
                             <th>Receiver Zip Code</th>
                             <th>Sender Zip Code</th>
+                            <th>Vehicle</th> 
                         </tr>
                     </thead>
                     <tbody>
