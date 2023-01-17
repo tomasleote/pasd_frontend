@@ -1,60 +1,56 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-class DisplayTable extends React.Component {
-   
-    constructor(props) {
-        super(props);
-        this.state = {
-            list: []
-        };
+function DisplayTable() {
 
-        this.callAPI = this.callAPI.bind(this);
-        this.callAPI();
-    }
+    const [data, setData] = useState([]);
 
-    callAPI() { 
-        fetch("https://dummy.restapiexample.com/api/v1/employees").then(  //Add api link here
-            res => res.json()
+    useEffect(() => {
+        fetch('https://localhost:8080/deliveries')
+            .then(response => response.json())
+            .then(data => setData(data))
+            .catch(error => console.log(error));
+    }, []);
+
+{ /*callAPI() {
+        fetch("https://localhost:8080/deliveries").then(
+            res => res.json(),
         ).then((data) => {
             this.setState({list: data});
             console.log(data);
         })
     }
-
-    render() {
-        let tableData = this.state.list.map((item) => {
-            return (
-                <tr key={item.id}>    {/*Change according to data parameters*/}
-                    <td>{item.id}</td>
-                    <td>{item.employee_name}</td>
-                    <td>{item.employee_salary}</td>
-                    <td>{item.employee_age}</td>
-                </tr>
-            )
-        });
-
-        return (
-            <div className='container'>
-                <table className='table table-striped'>
-                    <thead>
-                        <tr>
-                            <th>Expected Deliver date</th>
-                            <th>Actual Deliver date</th>
-                            <th>Order Id</th>
-                            <th>Order Status</th>
-                            <th>Id</th>
-                            <th>Receiver Zip Code</th>
-                            <th>Sender Zip Code</th>
-                            <th>Vehicle</th> 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tableData}
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
+*/
 }
-
+return (
+    <div className='container'>
+        <table className='table table-striped'>
+            <thead>
+            <tr>
+                <th>Expected Deliver date</th>
+                <th>Actual Deliver date</th>
+                <th>Order Id</th>
+                <th>Id</th>
+                <th>Sender Zip Code</th>
+                <th>Receiver Zip Code</th>
+                <th>Vehicle</th>
+                <th>Order Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {data.map(item => (
+                <tr key={item.order_id}>
+                    <td>{item.expected_deliver_datetime}</td>
+                    <td>{item.actual_deliver_datetime}</td>
+                    <td>{item.order_id}</td>
+                    <td>{item.sender_zipcode}</td>
+                    <td>{item.receiver_zipcode}</td>
+                    <td>{item.vehicle}</td>
+                    <td>{item.status}</td>
+                </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+    );
+}
 export default DisplayTable;

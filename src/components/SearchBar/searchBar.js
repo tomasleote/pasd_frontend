@@ -8,7 +8,9 @@ function SearchBar() {
   const [apiResponse, setApiResponse] = useState([]);
 
   async function handleSearch() {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');   //Add api link here
+    console.log(searchValue)
+    const response = await axios.get(`http://localhost:8080/getstatus/${searchValue}`);   //Add api link here
+    console.log('data:' + response.data);
     setApiResponse(response.data);
   }
 
