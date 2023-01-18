@@ -34,6 +34,7 @@ return (
                 <th>Receiver Zip Code</th>
                 <th>Vehicle</th>
                 <th>Order Status</th>
+                <th>Group number</th>
             </tr>
             </thead>
             <tbody>
@@ -47,6 +48,7 @@ return (
                     <td>{item.receiver_zipcode}</td>
                     <td>{item.vehicle}</td>
                     <td>{item.status}</td>
+                    <td>{item.group_number}</td>
                 </tr>
                 ))}
             </tbody>
